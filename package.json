@@ -4,7 +4,7 @@
   "description": "Expressive query building for MongoDB",
   "main": "lib/mquery.js",
   "scripts": {
-    "test": "mocha test/index.js test/*.test.js",
+    "test": "env USE_ASTRA=true mocha test/index.js test/*.test.js",
     "fix-lint": "eslint . --fix",
     "lint": "eslint ."
   },
@@ -19,6 +19,7 @@
     "debug": "4.x"
   },
   "devDependencies": {
+    "astra-mongoose": "git@github.com:vkarpov15/astra-mongoose.git#vkarpov15/fix-build-and-add-doclose",
     "eslint": "8.x",
     "eslint-plugin-mocha-no-only": "1.1.1",
     "mocha": "9.x",

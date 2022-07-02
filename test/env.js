@@ -15,6 +15,9 @@ switch (env.type) {
   case 'browser':
     col = require('./collection/browser');
     break;
+  case 'astra':
+    col = require('./collection/astra');
+    break;
   default:
     throw new Error('missing collection implementation for environment: ' + env.type);
 }

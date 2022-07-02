@@ -5,6 +5,7 @@ const assert = require('assert');
 
 describe('mquery', function() {
   let col;
+  this.timeout(5000);
 
   before(function(done) {
     // get the env specific collection interface

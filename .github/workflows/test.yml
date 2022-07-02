@@ -1,0 +1,25 @@
+name: Test
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    needs:
+      - lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18]
+        os: [ubuntu-20.04]
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+      - name: Setup node
+        uses: actions/setup-node@eeb10cff27034e7acf239c5d29f62154018672fd # v3.1.1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test
