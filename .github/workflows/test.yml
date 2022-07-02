@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
-      - run: echo $ASTRA_URI && npm test
+      - run: npm test
         env:
           USE_ASTRA: true
           ASTRA_URI: ${{ secrets.ASTRA_URI }}
