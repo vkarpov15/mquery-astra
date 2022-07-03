@@ -11,8 +11,19 @@ exports.getCollection = function(cb) {
     if (err != null) {
       return cb(err);
     }
-    const collection = astraClient.db().collection('tests');
-    return cb(null, collection);
+
+    astraClient.db().dropCollection('tests', function(err) {
+      if (err != null && err.response?.status !== 404) {
+        return cb(err);
+      }
+      astraClient.db().createCollection('tests', {}, function(err) {
+        if (err != null) {
+          return cb(err);
+        }
+        const collection = astraClient.db().collection('tests');
+        return cb(null, collection);
+      });
+    });
   });
 };
 

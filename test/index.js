@@ -8,6 +8,7 @@ describe('mquery', function() {
   this.timeout(5000);
 
   before(function(done) {
+    this.timeout(20000);
     // get the env specific collection interface
     require('./env').getCollection(function(err, collection) {
       assert.ifError(err);
@@ -2177,18 +2178,13 @@ describe('mquery', function() {
 
     describe('with 2 arguments', function() {
       const name = 'remove: 2 arg test';
-      beforeEach(function(done) {
-        col.remove({}, function(err) {
-          assert.ifError(err);
-          col.insertMany([{ name: 'shelly' }, { name: name }], function(err) {
-            assert.ifError(err);
-            mquery(col).find(function(err, docs) {
-              assert.ifError(err);
-              assert.equal(2, docs.length);
-              done();
-            });
-          });
-        });
+      beforeEach(async function() {
+        await col.deleteMany({});
+
+        await col.insertMany([{ name: 'shelly' }, { name: name }]);
+
+        const docs = await mquery(col).find();
+        assert.equal(docs.length, 2);
       });
 
       describe('plain object + callback', function() {
