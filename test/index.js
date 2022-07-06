@@ -320,6 +320,12 @@ describe('mquery', function() {
         check['$' + type] = 8;
         assert.deepEqual(m._conditions.count, check);
       });
+
+      // ASTRA: test which query operators are supported
+      it('executes', async function() {
+        const m = mquery(col).find()[type]('count', 3);
+        await m;
+      });
     };
   }
 
@@ -2475,7 +2481,7 @@ describe('mquery', function() {
 
   describe('exec', function() {
     beforeEach(function(done) {
-      col.insertMany([{ name: 'exec', age: 1 }, { name: 'exec', age: 2 }], done);
+      col.insertMany([{ _id: 'foo', name: 'exec', age: 1 }, { _id: 'bar', name: 'exec', age: 2 }], done);
     });
 
     afterEach(function(done) {
