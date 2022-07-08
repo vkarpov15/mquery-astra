@@ -329,7 +329,7 @@ describe('mquery', function() {
     };
   }
 
-  'gt gte lt lte ne in nin regex size maxDistance minDistance'.split(' ').forEach(function(type) {
+  'gt gte lt lte ne in nin regex size maxDistance minDistance geoIntersects'.split(' ').forEach(function(type) {
     describe(type, generalCondition(type));
   });
 
