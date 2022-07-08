@@ -712,7 +712,7 @@ describe('mquery', function() {
 
     // ASTRA: geoIntersects test
     it('exec', async function() {
-      await mquery().where('a').intersects().geometry(point);
+      await mquery(col).where('a').intersects().geometry(point);
     });
 
     describe('when called with one argument', function() {
