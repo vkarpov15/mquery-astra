@@ -2481,7 +2481,7 @@ describe('mquery', function() {
 
   describe('exec', function() {
     beforeEach(function(done) {
-      col.insertMany([{ _id: 'foo', name: 'exec', age: 1 }, { _id: 'bar', name: 'exec', age: 2 }], done);
+      col.insertMany([{ name: 'exec', age: 1 }, { name: 'exec', age: 2 }], done);
     });
 
     afterEach(function(done) {
