@@ -1202,6 +1202,19 @@ describe('mquery', function() {
       query.sort(new Map().set('field', 1).set('test', -1));
       assert.deepEqual(query.options.sort, new Map().set('field', 1).set('test', -1));
     });
+
+    // ASTRA: test sorting
+    it('exec', async function() {
+      await col.insertMany([{ name: 'exec', age: 1 }, { name: 'exec', age: 2 }]);
+
+      let query = mquery(col).find().sort({ age: -1 });
+      let res = await query;
+      assert.deepEqual(res.map(doc => doc.age), [2, 1]);
+
+      query = mquery(col).find().sort({ age: 1 });
+      res = await query;
+      assert.deepEqual(res.map(doc => doc.age), [1, 2]);
+    })
   });
 
   function simpleOption(type, options) {
