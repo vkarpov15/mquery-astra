@@ -19,7 +19,7 @@
     "debug": "4.x"
   },
   "devDependencies": {
-    "astra-mongoose": "git@github.com:vkarpov15/astra-mongoose.git#vkarpov15/fix-build-and-add-doclose",
+    "astra-mongoose": "file:./astra-mongoose/astra-mongoose-0.0.3.tgz",
     "eslint": "8.x",
     "eslint-plugin-mocha-no-only": "1.1.1",
     "mocha": "9.x",
